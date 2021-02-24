@@ -97,27 +97,6 @@ router.delete('/Admins/:id', async (req, res) => {
         res.status(500).send()
     }
 })
-router.post('/Admins/LogIn',async(req,res)=>{
-    try{
-        const admin = await Admin.findByCredentiale(req.body.Email,req.body.PassWord);
-        const token = await admin.genarateAuthToken();
-        res.send({admin,token});
-    }catch(e){
-        res.status(400).send()
-    }
-})
-router.post('/Admins/LogOut',admin,async (req,res)=>{
-    try{
-        req.admin.tokens = req.admin.tokens.filter((token)=>{
-            return token.token ==! req.token
-        })
-        await req.admin.save();
-        res.send("admin log Out")
-    }catch(e){
-        res.status(400).send(e)
-    }
-
-});
 
 
 module.exports = router;
