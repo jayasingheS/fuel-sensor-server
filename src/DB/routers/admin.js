@@ -26,7 +26,7 @@ router.post('/Admins/LogIn',async(req,res)=>{
         res.status(400).send()
     }
 })
-router.post('/Admins/LogOut',admin,async (req,res)=>{
+router.get('/Admins/LogOut',admin,async (req,res)=>{
     try{
         req.admin.tokens = req.admin.tokens.filter((token)=>{
             return token.token ==! req.token
