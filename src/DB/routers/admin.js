@@ -32,8 +32,8 @@ router.get('/Admins/LogOut',admin,async (req,res)=>{
             return token.token ==! req.token
         })
         await req.admin.save();
-          req.adminStatus=false
-        res.send(req.adminStatus)
+         await adminStatus=false
+        res.send(adminStatus)
     }catch(e){
         res.status(400).send(e)
     }
