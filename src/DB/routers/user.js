@@ -41,6 +41,19 @@ router.post('/Users',async (req,res)=>{
     }
 
 });
+router.get('/Users/LogOut',auth,async (req,res)=>{
+    try{
+        req.user.tokens = req.user.tokens.filter((token)=>{
+            return token.token ==! req.token
+        })
+        await req.user.save();
+         const userStatus=false
+        res.send({userStatus})
+    }catch(e){
+        res.status(400).send(e)
+    }
+
+});
 
 router.post('/User/LogIn',async(req,res)=>{
     try{
